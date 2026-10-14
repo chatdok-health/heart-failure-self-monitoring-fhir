@@ -1,0 +1,33 @@
+{
+  "resourceType": "CodeSystem",
+  "id": "hf-self-monitoring",
+  "url": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring",
+  "version": "0.1.0",
+  "name": "HFSelfMonitoring",
+  "title": "Heart failure self-monitoring concepts",
+  "status": "draft",
+  "experimental": true,
+  "date": "2026-10-14",
+  "publisher": "ChatDok GmbH",
+  "contact": [{"telecom": [{"system": "email", "value": "hello@chatdok.com"}]}],
+  "description": "Patient-reported symptom items and answer options used in the ChatDok heart failure daily check-in. Codes for symptom concepts match the concept ids in https://github.com/chatdok-health/cardio-symptom-lexicon.",
+  "caseSensitive": true,
+  "content": "complete",
+  "concept": [
+    {"code": "dyspnea", "display": "Shortness of breath compared with usual", "designation": [{"language": "de", "value": "Kurzatmigkeit im Vergleich zu sonst"}]},
+    {"code": "edema", "display": "Swelling of legs, ankles or feet compared with usual", "designation": [{"language": "de", "value": "Schwellung an Beinen, Knöcheln oder Füßen im Vergleich zu sonst"}]},
+    {"code": "orthopnea", "display": "Needed more pillows or could not lie flat", "designation": [{"language": "de", "value": "Mehr Kissen gebraucht oder nicht flach liegen können"}]},
+    {"code": "paroxysmal_nocturnal_dyspnea", "display": "Woke at night short of breath", "designation": [{"language": "de", "value": "Nachts mit Atemnot aufgewacht"}]},
+    {"code": "presyncope", "display": "Dizziness or light-headedness", "designation": [{"language": "de", "value": "Schwindel oder Benommenheit"}]},
+    {"code": "syncope", "display": "Fainting", "designation": [{"language": "de", "value": "Ohnmacht"}]},
+    {"code": "chest_pain", "display": "Chest pain or pressure", "designation": [{"language": "de", "value": "Brustschmerz oder Druck auf der Brust"}]},
+    {"code": "medication_adherence", "display": "Took heart medication as prescribed", "designation": [{"language": "de", "value": "Herzmedikamente wie verordnet eingenommen"}]},
+    {"code": "better", "display": "Better than usual", "designation": [{"language": "de", "value": "Besser als sonst"}]},
+    {"code": "same", "display": "Same as usual", "designation": [{"language": "de", "value": "Wie sonst"}]},
+    {"code": "worse", "display": "Worse than usual", "designation": [{"language": "de", "value": "Schlechter als sonst"}]},
+    {"code": "much_worse", "display": "Much worse than usual", "designation": [{"language": "de", "value": "Viel schlechter als sonst"}]},
+    {"code": "all_doses", "display": "Yes, all doses", "designation": [{"language": "de", "value": "Ja, alle Dosen"}]},
+    {"code": "some_missed", "display": "Missed some doses", "designation": [{"language": "de", "value": "Einige Dosen vergessen"}]},
+    {"code": "none_taken", "display": "Did not take any", "designation": [{"language": "de", "value": "Keine eingenommen"}]}
+  ]
+}

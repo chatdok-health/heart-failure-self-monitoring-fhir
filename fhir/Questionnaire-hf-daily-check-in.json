@@ -1,0 +1,190 @@
+{
+  "resourceType": "Questionnaire",
+  "id": "hf-daily-check-in",
+  "url": "https://chatdok.com/fhir/Questionnaire/hf-daily-check-in",
+  "version": "0.1.0",
+  "name": "HFDailyCheckIn",
+  "title": "Heart failure daily check-in",
+  "status": "draft",
+  "experimental": true,
+  "subjectType": ["Patient"],
+  "date": "2026-10-14",
+  "publisher": "ChatDok GmbH",
+  "contact": [{"telecom": [{"system": "email", "value": "hello@chatdok.com"}]}],
+  "description": "A short daily self-monitoring questionnaire for people living with heart failure: weight, vital signs, warning symptoms and medication adherence. Not a validated instrument. Escalation thresholds must be set by the patient's care team.",
+  "purpose": "Daily home monitoring between clinical visits.",
+  "copyright": "© 2026 ChatDok GmbH. Licensed under Apache 2.0.",
+  "item": [
+    {
+      "linkId": "vitals",
+      "text": "Today's measurements",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "weight",
+          "code": [{"system": "http://loinc.org", "code": "29463-7", "display": "Body weight"}],
+          "text": "Your weight this morning, after using the toilet and before breakfast",
+          "type": "decimal",
+          "required": true,
+          "extension": [
+            {"url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit", "valueCoding": {"system": "http://unitsofmeasure.org", "code": "kg", "display": "kg"}},
+            {"url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueDecimal": 20},
+            {"url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueDecimal": 350},
+            {"url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationExtract", "valueBoolean": true}
+          ]
+        },
+        {
+          "linkId": "blood-pressure",
+          "code": [{"system": "http://loinc.org", "code": "85354-9", "display": "Blood pressure panel with all children optional"}],
+          "text": "Blood pressure (if you measure it)",
+          "type": "group",
+          "item": [
+            {
+              "linkId": "systolic",
+              "code": [{"system": "http://loinc.org", "code": "8480-6", "display": "Systolic blood pressure"}],
+              "text": "Systolic (upper number)",
+              "type": "integer",
+              "extension": [
+                {"url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit", "valueCoding": {"system": "http://unitsofmeasure.org", "code": "mm[Hg]", "display": "mmHg"}},
+                {"url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueInteger": 50},
+                {"url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueInteger": 260},
+                {"url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationExtract", "valueBoolean": true}
+              ]
+            },
+            {
+              "linkId": "diastolic",
+              "code": [{"system": "http://loinc.org", "code": "8462-4", "display": "Diastolic blood pressure"}],
+              "text": "Diastolic (lower number)",
+              "type": "integer",
+              "extension": [
+                {"url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit", "valueCoding": {"system": "http://unitsofmeasure.org", "code": "mm[Hg]", "display": "mmHg"}},
+                {"url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueInteger": 30},
+                {"url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueInteger": 160},
+                {"url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationExtract", "valueBoolean": true}
+              ]
+            }
+          ]
+        },
+        {
+          "linkId": "heart-rate",
+          "code": [{"system": "http://loinc.org", "code": "8867-4", "display": "Heart rate"}],
+          "text": "Resting pulse (if you measure it)",
+          "type": "integer",
+          "extension": [
+            {"url": "http://hl7.org/fhir/StructureDefinition/questionnaire-unit", "valueCoding": {"system": "http://unitsofmeasure.org", "code": "/min", "display": "beats per minute"}},
+            {"url": "http://hl7.org/fhir/StructureDefinition/minValue", "valueInteger": 20},
+            {"url": "http://hl7.org/fhir/StructureDefinition/maxValue", "valueInteger": 250},
+            {"url": "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-observationExtract", "valueBoolean": true}
+          ]
+        }
+      ]
+    },
+    {
+      "linkId": "symptoms",
+      "text": "How have you felt since yesterday?",
+      "type": "group",
+      "item": [
+        {
+          "linkId": "chest-pain",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "chest_pain"}],
+          "text": "Have you had chest pain or pressure?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "chest-pain-alert",
+          "text": "If you have chest pain or pressure now, call 112 (or your local emergency number) straight away.",
+          "type": "display",
+          "enableWhen": [{"question": "chest-pain", "operator": "=", "answerBoolean": true}]
+        },
+        {
+          "linkId": "breathlessness",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "dyspnea"}],
+          "text": "How is your breathing compared with usual?",
+          "type": "choice",
+          "required": true,
+          "answerValueSet": "#change-from-usual"
+        },
+        {
+          "linkId": "swelling",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "edema"}],
+          "text": "How is any swelling in your legs, ankles or feet compared with usual?",
+          "type": "choice",
+          "required": true,
+          "answerValueSet": "#change-from-usual"
+        },
+        {
+          "linkId": "orthopnea",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "orthopnea"}],
+          "text": "Last night, did you need more pillows than usual, or could you not lie flat because of your breathing?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "night-breathlessness",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "paroxysmal_nocturnal_dyspnea"}],
+          "text": "Did you wake up during the night short of breath?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "dizziness",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "presyncope"}],
+          "text": "Have you felt dizzy or light-headed?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "fainting",
+          "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "syncope"}],
+          "text": "Have you fainted?",
+          "type": "boolean",
+          "required": true
+        },
+        {
+          "linkId": "fainting-alert",
+          "text": "Fainting needs urgent medical assessment. Contact your care team now, or call 112 if you feel unwell.",
+          "type": "display",
+          "enableWhen": [{"question": "fainting", "operator": "=", "answerBoolean": true}]
+        }
+      ]
+    },
+    {
+      "linkId": "medication",
+      "code": [{"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "medication_adherence"}],
+      "text": "Did you take your heart medication as prescribed yesterday?",
+      "type": "choice",
+      "required": true,
+      "answerOption": [
+        {"valueCoding": {"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "all_doses", "display": "Yes, all doses"}},
+        {"valueCoding": {"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "some_missed", "display": "Missed some doses"}},
+        {"valueCoding": {"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "none_taken", "display": "Did not take any"}}
+      ]
+    },
+    {
+      "linkId": "notes",
+      "text": "Anything else you want your care team to know?",
+      "type": "text"
+    }
+  ],
+  "contained": [
+    {
+      "resourceType": "ValueSet",
+      "id": "change-from-usual",
+      "status": "draft",
+      "compose": {
+        "include": [
+          {
+            "system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring",
+            "concept": [
+              {"code": "better", "display": "Better than usual"},
+              {"code": "same", "display": "Same as usual"},
+              {"code": "worse", "display": "Worse than usual"},
+              {"code": "much_worse", "display": "Much worse than usual"}
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

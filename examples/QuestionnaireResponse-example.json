@@ -1,0 +1,39 @@
+{
+  "resourceType": "QuestionnaireResponse",
+  "id": "hf-daily-check-in-example",
+  "meta": {"tag": [{"system": "http://terminology.hl7.org/CodeSystem/v3-ActReason", "code": "HTEST", "display": "test health data"}]},
+  "questionnaire": "https://chatdok.com/fhir/Questionnaire/hf-daily-check-in|0.1.0",
+  "status": "completed",
+  "subject": {"reference": "Patient/synthetic-example", "display": "Synthetic example patient"},
+  "authored": "2026-10-14T07:42:00+02:00",
+  "item": [
+    {
+      "linkId": "vitals",
+      "item": [
+        {"linkId": "weight", "answer": [{"valueDecimal": 81.6}]},
+        {
+          "linkId": "blood-pressure",
+          "item": [
+            {"linkId": "systolic", "answer": [{"valueInteger": 118}]},
+            {"linkId": "diastolic", "answer": [{"valueInteger": 72}]}
+          ]
+        },
+        {"linkId": "heart-rate", "answer": [{"valueInteger": 68}]}
+      ]
+    },
+    {
+      "linkId": "symptoms",
+      "item": [
+        {"linkId": "chest-pain", "answer": [{"valueBoolean": false}]},
+        {"linkId": "breathlessness", "answer": [{"valueCoding": {"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "worse", "display": "Worse than usual"}}]},
+        {"linkId": "swelling", "answer": [{"valueCoding": {"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "worse", "display": "Worse than usual"}}]},
+        {"linkId": "orthopnea", "answer": [{"valueBoolean": true}]},
+        {"linkId": "night-breathlessness", "answer": [{"valueBoolean": false}]},
+        {"linkId": "dizziness", "answer": [{"valueBoolean": false}]},
+        {"linkId": "fainting", "answer": [{"valueBoolean": false}]}
+      ]
+    },
+    {"linkId": "medication", "answer": [{"valueCoding": {"system": "https://chatdok.com/fhir/CodeSystem/hf-self-monitoring", "code": "all_doses", "display": "Yes, all doses"}}]},
+    {"linkId": "notes", "answer": [{"valueString": "Ankles more swollen in the evening. Synthetic example."}]}
+  ]
+}
